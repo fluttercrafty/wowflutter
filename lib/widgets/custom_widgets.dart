@@ -83,7 +83,6 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
-
 class CustomElevatedButton extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
@@ -101,7 +100,7 @@ class CustomElevatedButton extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.isLoading = false,
-    this.backgroundColor = const Color(0xFF028a7e), // Removed default value
+    this.backgroundColor, // Removed default value from here
     this.textColor = Colors.white,
     this.fontSize = 15,
     this.borderColor = Colors.transparent,
@@ -113,6 +112,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Use a fallback color if `backgroundColor` is not provided
+    final effectiveBackgroundColor = backgroundColor ?? const Color(0xFF028a7e);
 
     return Container(
       margin: margin,
@@ -120,9 +120,9 @@ class CustomElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
+          backgroundColor: effectiveBackgroundColor,
           foregroundColor: textColor,
-          disabledBackgroundColor: backgroundColor?.withOpacity(0.6),
+          disabledBackgroundColor: effectiveBackgroundColor.withOpacity(0.6),
           padding: padding,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
@@ -143,7 +143,7 @@ class CustomElevatedButton extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    'Loading...',
+                    'Loading...', // Replace with localization if needed
                     style: TextStyle(color: textColor),
                   ),
                 ],
