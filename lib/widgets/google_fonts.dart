@@ -1,26 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:crypto/crypto.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import 'package:html/parser.dart' as html_parser;
-
-
-
-  // static void getAppDetails(String encryptedData) {
-  //   final encryptionService = EncryptionService();
-
-  //   final decryptedJson = encryptionService.decryptData(encryptedData);
-  //   if (decryptedJson != null) {
-  //     final decryptedData = jsonDecode(decryptedJson);
-  //     data.add(decryptedData);
-  //   } else {
-  //     debugPrint("failed.");
-  //   }
-  // }
 
 TextStyle safeGoogleFont(
   String fontFamily, {

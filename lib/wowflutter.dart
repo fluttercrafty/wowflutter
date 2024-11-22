@@ -5,6 +5,7 @@ export 'widgets/notification_shimmer.dart';
 export 'widgets/privacy.dart';
 export 'widgets/shimmer.dart';
 export 'widgets/2fa.dart';
-export 'widgets/helper_functions.dart';
+export 'widgets/google_fonts.dart';
 export 'widgets/custom_widgets.dart';
 export 'widgets/custom_otp.dart';
+export 'widgets/cache_image.dart';

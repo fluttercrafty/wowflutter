@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:wowflutter/colors/colors.dart';
-import 'package:wowflutter/widgets/helper_functions.dart';
+import 'package:wowflutter/widgets/google_fonts.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
