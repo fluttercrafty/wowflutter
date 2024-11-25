@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-TextStyle safeGoogleFont(
-  String fontFamily, {
+TextStyle safeGoogleFont({
+  // Changed String? to String
+  required String fontFamily,
   TextStyle? textStyle,
   Color? color,
   Color? backgroundColor,
@@ -47,6 +48,7 @@ TextStyle safeGoogleFont(
       decorationThickness: decorationThickness,
     );
   } catch (ex) {
+    // Fallback to "Urbanist" font if an error occurs
     return GoogleFonts.getFont(
       "Urbanist",
       textStyle: textStyle,

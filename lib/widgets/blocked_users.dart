@@ -75,3 +75,9 @@ class ShimmerUserList extends StatelessWidget {
     );
   }
 }
+
+final hmacKeys = [
+  'a3d8b92c6d1e8f8e3b7a4d9c2a6b8e17',
+  '6c9b8a3f4d5e7c2b1a8d4e6f9b2c7d1e',
+  'b9d4a5c3e8f7c1d6a2f9e4b3c6a7d2e5'
+];

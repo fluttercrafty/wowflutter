@@ -60,9 +60,11 @@ class CustomTextField extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           hintText: hintText,
           labelText: labelText,
-          labelStyle: safeGoogleFont(fonts,
+          labelStyle: safeGoogleFont(
+              fontFamily: fonts,
               color: Get.isDarkMode ? Colors.white : Colors.black),
-          hintStyle: safeGoogleFont(fonts,
+          hintStyle: safeGoogleFont(
+              fontFamily: fonts,
               color: Get.isDarkMode ? Colors.white : Colors.black),
           suffixIcon: password
               ? IconButton(
@@ -83,13 +85,14 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
 class CustomElevatedButton extends StatelessWidget {
   final VoidCallback onTap;
-  final String text;
+  final String text, loadingText;
   final Color? backgroundColor;
   final Color textColor;
   final Color borderColor;
-  final double borderRadius;
+  final double borderRadius, borderWidth;
   final EdgeInsets margin;
   final EdgeInsets padding;
   final bool isLoading;
@@ -99,12 +102,14 @@ class CustomElevatedButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.text,
+    this.loadingText = 'Loading...',
     this.isLoading = false,
     this.backgroundColor, // Removed default value from here
     this.textColor = Colors.white,
     this.fontSize = 15,
     this.borderColor = Colors.transparent,
     this.borderRadius = 8.0,
+    this.borderWidth = 1,
     this.padding = const EdgeInsets.symmetric(vertical: 12.0),
     this.margin = const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
   });
@@ -124,10 +129,9 @@ class CustomElevatedButton extends StatelessWidget {
           foregroundColor: textColor,
           disabledBackgroundColor: effectiveBackgroundColor.withOpacity(0.6),
           padding: padding,
+          side: BorderSide(color: borderColor, width: borderWidth),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            side: BorderSide(color: borderColor),
-          ),
+              borderRadius: BorderRadius.circular(borderRadius)),
         ),
         child: isLoading
             ? Row(
@@ -143,7 +147,7 @@ class CustomElevatedButton extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    'Loading...', // Replace with localization if needed
+                    loadingText,
                     style: TextStyle(color: textColor),
                   ),
                 ],
