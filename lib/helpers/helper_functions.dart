@@ -268,61 +268,91 @@ class THelper {
   }
 }
 
-// class GetDataService {
-//   GetDataService() {
-//     final decryptedMap = getData();
-//     if (decryptedMap != null) {
-//       apiKey.add(decryptedMap);
-//     } else {
-//       debugPrint('Decryption failed or HMAC verification failed');
-//     }
-//   }
+extension StringHelperExtension on String {
+  String removeDiacriticalMarks() {
+    return splitMapJoin(
+      '',
+      onNonMatch: (char) => char.isNotEmpty && kDiacriticsString.contains(char)
+          ? kNonDiacriticsString[kDiacriticsString.indexOf(char)]
+          : char,
+    );
+  }
 
-//   bool _verifyHMAC(List<int> data, String hmac, String key) {
-//     final generatedHmac =
-//         Hmac(sha256, utf8.encode(key)).convert(data).toString();
+  String toNormalize() {
+    return toLowerCase();
+  }
 
-//     return generatedHmac == hmac;
-//   }
+  String removeLastWord([int amount = 1]) {
+    final int cacheLenght = length;
+    if (cacheLenght > amount) {
+      return substring(0, cacheLenght - amount);
+    } else {
+      return "";
+    }
+  }
 
-//   String? layers(String encryptedJson, int layer) {
-//     final jsonObject = jsonDecode(encryptedJson);
-//     final dataBase64 = jsonObject['data'];
-//     final hmac = jsonObject['hmac'];
-//     final decodedData = base64Decode(dataBase64);
+  String toCapitalize() {
+    return isNotEmpty
+        ? "${this[0].toUpperCase()}${substring(1, length).toLowerCase()}"
+        : this;
+  }
 
-//     if (!_verifyHMAC(decodedData, hmac, hmacKeys[layer])) {
-//       return null;
-//     }
+  String toPluralize() {
+    if (isEmpty) return "";
+    if (this[length - 1].toLowerCase() == "s") return this;
+    return "${this}s";
+  }
 
-//     final encrypter =
-//         encrypt.Encrypter(encrypt.AES(keys[layer], mode: encrypt.AESMode.cbc));
-//     try {
-//       final decryptedBytes = encrypter
-//           .decryptBytes(encrypt.Encrypted(decodedData), iv: ivs[layer]);
-//       final decryptedString = utf8.decode(decryptedBytes);
-//       return decryptedString;
-//     } catch (e) {
-//       return null;
-//     }
-//   }
+  String removeAllNotNumber({List<String> exclude = const []}) {
+    final List<String> valid = kNumbersString.toList()..addAll(exclude);
+    final StringBuffer buffer = StringBuffer();
+    for (int i = 0; i < length; i++) {
+      final String character = this[i];
+      if (valid.contains(character)) buffer.write(character);
+    }
+    return buffer.toString();
+  }
 
-//   Map<String, dynamic>? getData() {
-//     try {
-//       String encryptedJson =
-//           jsonEncode({"data": FlutterCrafty.data, "hmac": FlutterCrafty.hmac});
+  String censorEmail({int begin = 4, int end = 4, int asterisks = 4}) {
+    final int count = length;
+    final StringBuffer censor = StringBuffer();
+    asterisks.forEach((_) => censor.write("*"));
 
-//       String? decryptedData = encryptedJson;
-//       for (int layer = keys.length - 1; layer >= 0; layer--) {
-//         decryptedData = layers(decryptedData!, layer);
-//         if (decryptedData == null) return null;
-//       }
-//       return decryptedData != null
-//           ? jsonDecode(decryptedData) as Map<String, dynamic>
-//           : null;
-//     } catch (e) {
-//       debugPrint('Decryption error: $e');
-//       return null;
-//     }
-//   }
-// }
+    if (count >= begin + end) {
+      return "${substring(0, begin)}$censor${substring(count - end, count)}";
+    }
+    return this;
+  }
+
+  String removeAllNumbers({List<String> include = const []}) {
+    final List<String> invalid = kNumbersString.toList()..addAll(include);
+    final StringBuffer buffer = StringBuffer();
+    for (int i = 0; i < length; i++) {
+      final String character = this[i];
+      if (!invalid.contains(character)) buffer.write(character);
+    }
+    return buffer.toString();
+  }
+}
+
+const kNumbersString = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+const String kDiacriticsString =
+    'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+const String kNonDiacriticsString =
+    'AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz';
+
+extension IntExtensionHelper on int {
+  void forEach(void Function(int index) f) {
+    for (var i = 0; i < this; i++) {
+      f(i);
+    }
+  }
+
+  List<T> map<T>(T Function(int index) f) {
+    final List<T> values = [];
+    for (var i = 0; i < this; i++) {
+      values.add(f(i));
+    }
+    return values;
+  }
+}

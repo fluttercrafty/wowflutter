@@ -53,7 +53,7 @@ class HeartStateAnimation extends State<HeartAnimation>
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(100, 250);
+    Size size = const Size(100, 250);
     return AnimatedBuilder(
       animation: controller,
       builder: (context, snapshot) {

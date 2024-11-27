@@ -3,21 +3,18 @@ import 'package:shimmer/shimmer.dart';
 
 class ShimmerAlbumGrid extends StatelessWidget {
   final int itemCount;
+  final dynamic baseColor;
+  final dynamic highlightColor;
 
   const ShimmerAlbumGrid({
     super.key,
-    this.itemCount = 6, // Default number of shimmer items
+    this.itemCount = 6,
+    required this.baseColor,
+    required this.highlightColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    final baseColor = isDarkMode ? Colors.grey.shade800 : Colors.grey.shade300;
-    final highlightColor =
-        isDarkMode ? Colors.grey.shade600 : Colors.grey.shade100;
-
     return GridView.builder(
       itemCount: itemCount,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

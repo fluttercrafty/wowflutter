@@ -3,21 +3,17 @@ import 'package:shimmer/shimmer.dart';
 
 class ShimmerUserList extends StatelessWidget {
   final int itemCount;
-
+  final dynamic baseColor;
+  final dynamic highlightColor;
   const ShimmerUserList({
     super.key,
     this.itemCount = 5,
+    required this.baseColor,
+    required this.highlightColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    final baseColor = isDarkMode ? Colors.grey.shade800 : Colors.grey.shade300;
-    final highlightColor =
-        isDarkMode ? Colors.grey.shade600 : Colors.grey.shade100;
-
     return ListView.builder(
       itemCount: itemCount,
       itemBuilder: (context, index) {

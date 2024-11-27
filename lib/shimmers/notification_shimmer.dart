@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class NotificationShimmerList extends StatelessWidget {
-  const NotificationShimmerList({super.key});
+  const NotificationShimmerList({
+    super.key,
+    required this.baseColor,
+    required this.highlightColor,
+  });
+  final dynamic baseColor;
+  final dynamic highlightColor;
 
   @override
-  Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    final baseColor = isDarkMode ? Colors.grey[700]! : Colors.grey[300]!;
-    final highlightColor = isDarkMode ? Colors.grey[500]! : Colors.grey[100]!;
-
+  Widget build(BuildContext context) {   
     return ListTile(
       leading: Shimmer.fromColors(
         baseColor: baseColor,
@@ -55,15 +55,25 @@ class NotificationShimmerList extends StatelessWidget {
 
 class NotificationShimmer extends StatelessWidget {
   final int length;
+  final dynamic baseColor;
+  final dynamic highlightColor;
 
-  const NotificationShimmer({super.key, required this.length});
+  const NotificationShimmer({
+    super.key,
+    required this.length,
+    required this.baseColor,
+    required this.highlightColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: length,
       itemBuilder: (context, index) {
-        return const NotificationShimmerList();
+        return NotificationShimmerList(
+          baseColor: baseColor,
+          highlightColor: highlightColor,
+        );
       },
     );
   }

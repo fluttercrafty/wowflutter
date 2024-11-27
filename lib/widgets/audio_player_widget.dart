@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:wowflutter/logging/logger.dart';
 
 class AudioWidget extends StatefulWidget {
   const AudioWidget({
@@ -29,7 +30,7 @@ class _WidgetSondState extends State<AudioWidget> {
     duration = _player.duration!;
     setState(() {});
     _player.positionStream.listen((event) {
-      Duration temp = event as Duration;
+      Duration temp = event;
       postition = temp;
       setState(() {});
     });
@@ -40,12 +41,12 @@ class _WidgetSondState extends State<AudioWidget> {
       setState(() {});
       _player.pause();
       isPlaying = false;
-      print(isPlaying);
+      TLoggerHelper.error(isPlaying.toString());
     } else {
       setState(() {});
       _player.play();
       isPlaying = true;
-      print(isPlaying);
+      TLoggerHelper.error(isPlaying.toString());
     }
   }
 
@@ -121,7 +122,7 @@ class _WidgetSondPostFileState extends State<WidgetSondPostFile> {
     duration = _player.duration!;
     setState(() {});
     _player.positionStream.listen((event) {
-      Duration temp = event as Duration;
+      Duration temp = event;
       postition = temp;
       setState(() {});
     });
@@ -132,12 +133,12 @@ class _WidgetSondPostFileState extends State<WidgetSondPostFile> {
       setState(() {});
       _player.pause();
       isPlaying = false;
-      print(isPlaying);
+      TLoggerHelper.error(isPlaying.toString());
     } else {
       setState(() {});
       _player.play();
       isPlaying = true;
-      print(isPlaying);
+      TLoggerHelper.error(isPlaying.toString());
     }
   }
 

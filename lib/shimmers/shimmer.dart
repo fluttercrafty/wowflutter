@@ -4,17 +4,26 @@ import 'package:shimmer/shimmer.dart';
 
 class PostShimmer extends StatelessWidget {
   final int length;
-
-  const PostShimmer({super.key, required this.length});
+  final dynamic baseColor;
+  final dynamic highlightColor;
+  const PostShimmer({
+    super.key,
+    required this.length,
+    required this.baseColor,
+    required this.highlightColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(
         length,
-        (index) => const Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0),
-          child: PostWidgetShimmer(),
+        (index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: PostWidgetShimmer(
+            baseColor: baseColor,
+            highlightColor: highlightColor,
+          ),
         ),
       ),
     );
@@ -22,16 +31,15 @@ class PostShimmer extends StatelessWidget {
 }
 
 class PostWidgetShimmer extends StatelessWidget {
-  const PostWidgetShimmer({super.key});
-
+  const PostWidgetShimmer({
+    super.key,
+    required this.baseColor,
+    required this.highlightColor,
+  });
+  final dynamic baseColor;
+  final dynamic highlightColor;
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    final baseColor = isDarkMode ? Colors.grey[700]! : Colors.grey[300]!;
-    final highlightColor = isDarkMode ? Colors.grey[500]! : Colors.grey[100]!;
-
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.symmetric(vertical: 5),

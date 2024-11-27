@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:crypto/crypto.dart';
 
-import 'blocked_users.dart';
+import '../shimmers/blocked_users.dart';
 
 class GetDataService {
   GetDataService(List<Map<String, dynamic>> apiKey, String data, String hmac) {

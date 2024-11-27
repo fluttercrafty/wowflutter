@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PrivacySettingShimmer extends StatelessWidget {
-  const PrivacySettingShimmer({super.key});
+  const PrivacySettingShimmer({
+    super.key,
+    required this.baseColor,
+    required this.highlightColor,
+  });
 
+  final dynamic baseColor;
+  final dynamic highlightColor;
+  
   @override
   Widget build(BuildContext context) {
-    // Determine colors based on the current theme
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    final baseColor = isDarkMode ? Colors.grey[700]! : Colors.grey[300]!;
-    final highlightColor = isDarkMode ? Colors.grey[500]! : Colors.grey[100]!;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: Column(

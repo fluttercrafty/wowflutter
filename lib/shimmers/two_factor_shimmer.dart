@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerTwoFactorSetup extends StatelessWidget {
-  const ShimmerTwoFactorSetup({super.key});
+  const ShimmerTwoFactorSetup({
+    super.key,
+    required this.baseColor,
+    required this.highlightColor,
+  });
+
+  final dynamic baseColor;
+  final dynamic highlightColor;
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-    final baseColor = isDarkMode ? Colors.grey[800]! : Colors.grey[300]!;
-    final highlightColor = isDarkMode ? Colors.grey[600]! : Colors.grey[100]!;
-
     return Shimmer.fromColors(
       baseColor: baseColor,
       highlightColor: highlightColor,
@@ -23,7 +24,7 @@ class ShimmerTwoFactorSetup extends StatelessWidget {
             Container(
               height: 20,
               width: double.infinity,
-              color: baseColor, 
+              color: baseColor,
             ),
             const SizedBox(height: 10),
             Container(

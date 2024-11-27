@@ -41,25 +41,25 @@ class CircleBorderwith4Color extends CustomPainter {
     // canvas.drawLine(Offset(0, size.height / 2),
     //     Offset(size.height, size.height / 2), herlperPaint);
 
-    Paint paint_TR = Paint()
+    Paint paintTr = Paint()
       ..color = topRightColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = borderThinckness;
 
-    Paint paint_BR = Paint()
+    Paint paintBr = Paint()
       ..color = bottomRightColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = borderThinckness;
 
-    Paint paint_BL = Paint()
+    Paint paintBl = Paint()
       ..color = bottomLeftColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = borderThinckness;
 
-    Paint paint_TL = Paint()
+    Paint paintTl = Paint()
       ..color = topLeftColor
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
@@ -71,7 +71,7 @@ class CircleBorderwith4Color extends CustomPainter {
         deg2rad(0 + gap),
         deg2rad(90 - (gap * 2)),
         false,
-        paint_BR);
+        paintBr);
 
     ///BottomLeft :: Ok
     canvas.drawArc(
@@ -81,7 +81,7 @@ class CircleBorderwith4Color extends CustomPainter {
         deg2rad(90 - (gap * 2)),
         
         false,
-        paint_BL);
+        paintBl);
 
     // /TopLeft
     canvas.drawArc(
@@ -89,7 +89,7 @@ class CircleBorderwith4Color extends CustomPainter {
         deg2rad(180 + gap),
         deg2rad(90 - (gap * 2)),
         false,
-        paint_TL);
+        paintTl);
 
     ///Top Right :: OK
     canvas.drawArc(
@@ -97,7 +97,7 @@ class CircleBorderwith4Color extends CustomPainter {
         deg2rad(270 + gap),
         deg2rad(90 - (gap * 2)),
         false,
-        paint_TR);
+        paintTr);
   }
 
   @override
