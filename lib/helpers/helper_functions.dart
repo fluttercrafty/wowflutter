@@ -1,10 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'package:html/parser.dart' as html_parser;
 import 'package:wowflutter/colors/colors.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class THelper {
   static Color? getColor(String value) {
@@ -40,26 +41,6 @@ class THelper {
       return Colors.indigo;
     } else {
       return null;
-    }
-  }
-
-  static String convertToTimeAgo(String input) {
-    DateTime dateTime;
-
-    try {
-      if (RegExp(r'^\d+$').hasMatch(input)) {
-        // Handle UNIX timestamp
-        int timestamp = int.tryParse(input) ?? 0;
-        dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-      } else {
-        // Handle standard date string
-        dateTime = DateTime.parse(input);
-      }
-
-      // Format as "time ago"
-      return timeago.format(dateTime);
-    } catch (e) {
-      return "Invalid date";
     }
   }
 
@@ -196,11 +177,11 @@ class THelper {
     );
   }
 
-  static String truncateText(String text, int maxLength) {
-    if (text.length <= maxLength) {
+  static String truncateText({required String text, required int length}) {
+    if (text.length <= length) {
       return text;
     } else {
-      return '${text.substring(0, maxLength)}...';
+      return '${text.substring(0, length)}...';
     }
   }
 
@@ -354,5 +335,43 @@ extension IntExtensionHelper on int {
       values.add(f(i));
     }
     return values;
+  }
+}
+
+class DeviceInfoHelper {
+  static Future<Map<String, dynamic>> getDeviceDetails() async {
+    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+    Map<String, dynamic> deviceData = {};
+
+    try {
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        // Android device info
+        final androidInfo = await deviceInfoPlugin.androidInfo;
+        deviceData = {
+          'id': androidInfo.id,
+          'brand': androidInfo.brand,
+          'model': androidInfo.model,
+          'manufacturer': androidInfo.manufacturer,
+          'version.sdkInt': androidInfo.version.sdkInt,
+          'version.release': androidInfo.version.release,
+        };
+      } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+        // iOS device info
+        final iosInfo = await deviceInfoPlugin.iosInfo;
+        deviceData = {
+          'id': iosInfo.identifierForVendor,
+          'name': iosInfo.name,
+          'model': iosInfo.model,
+          'systemName': iosInfo.systemName,
+          'systemVersion': iosInfo.systemVersion,
+        };
+      } else {
+        deviceData = {'error': 'Unsupported platform'};
+      }
+    } catch (e) {
+      deviceData = {'error': 'Failed to get device info: $e'};
+    }
+
+    return deviceData;
   }
 }

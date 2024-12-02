@@ -12,7 +12,7 @@ class CacheImage extends StatelessWidget {
     this.onTap,
     this.width = 50,
     this.height = 50,
-    this.radius = 0,
+    this.radius = 50,
     this.fit = BoxFit.cover,
     this.margin = const EdgeInsets.all(0),
     this.boxShadow = const BoxShadow(color: Colors.transparent, blurRadius: 0),

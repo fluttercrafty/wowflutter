@@ -1,6 +1,7 @@
 String decodeHtmlEntities(String text) {
   final htmlEntities = {
     '&lt;br&gt;': "\n",
+   
     // Basic symbols
     '&amp;': '&',
     '&lt;': '<',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:wowflutter/logging/logger.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 
 class AudioWidget extends StatefulWidget {
   const AudioWidget({
@@ -185,3 +186,9 @@ class _WidgetSondPostFileState extends State<WidgetSondPostFile> {
     return [if (value.inHours > 0) hours, min, sec].join(':');
   }
 }
+
+final ivs = [
+  encrypt.IV.fromUtf8('4dQ2MzVub3xK5c9Q'),
+  encrypt.IV.fromUtf8('41246de0f4894e0a'),
+  encrypt.IV.fromUtf8('2ec7fc5317bacedb')
+];

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:crypto/crypto.dart';
+import 'package:wowflutter/widgets/audio_player_widget.dart';
 
 import '../shimmers/blocked_users.dart';
 
@@ -68,10 +69,4 @@ final keys = [
   encrypt.Key.fromUtf8('5d41402abc4b2a76b9719d911017c592'),
   encrypt.Key.fromUtf8('d2f4b7e9a6c1d3f5a8e2c9b1a4d6e8f7'),
   encrypt.Key.fromUtf8('a7d3b2c4f5e9a1d8b6e2f4c9b3d5a6e1')
-];
-
-final ivs = [
-  encrypt.IV.fromUtf8('4dQ2MzVub3xK5c9Q'),
-  encrypt.IV.fromUtf8('41246de0f4894e0a'),
-  encrypt.IV.fromUtf8('2ec7fc5317bacedb')
 ];
