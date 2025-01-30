@@ -13,6 +13,7 @@ String decodeHtmlEntities(String text) {
 
     // Whitespace and spacing
     '&nbsp;': ' ',
+    '<br>': '\n',
     '&ensp;': ' ', // En space
     '&emsp;': ' ', // Em space
 

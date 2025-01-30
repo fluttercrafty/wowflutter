@@ -1,14 +1,48 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart' as html_parser;
+import 'package:share_plus/share_plus.dart';
 import 'package:wowflutter/colors/colors.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:wowflutter/helpers/loaders.dart';
+
+const Map<String, String> currencySymbols = {
+  '&#36;': '\$', // Dollar
+  '&#8364;': '€', // Euro
+  '&#163;': '£', // British Pound
+  '&#165;': '¥', // Yen
+  '&#8377;': '₹', // Indian Rupee
+  '&#8378;': '₺', // Turkish Lira
+  '&#8381;': '₽', // Russian Ruble
+  '&#20803;': '¥', // Chinese Yuan
+  '&#8361;': '₩', // Korean Won
+  '&#8363;': '₫', // Vietnamese Dong
+  '&#3647;': '฿', // Thai Baht
+  '&#65020;': '﷼', // Saudi Riyal
+  '&#8369;': '₱', // Philippine Peso
+  '&#8362;': '₪', // Israeli New Shekel
+  '&#8355;': '₣', // Swiss Franc
+  '&#322;': 'zł', // Polish Zloty
+  '&#82;&#36;': 'R\$', // Brazilian Real
+  '&#70;&#116;': 'Ft', // Hungarian Forint
+  '&#107;&#114;': 'kr', // Nordic Krone (Sweden, Norway, Denmark)
+  '&#1583;&#46;&#1603;': 'د.ك', // Kuwaiti Dinar
+  '&#1585;&#46;&#1602;': 'ر.ق', // Qatari Riyal
+  '&#1583;&#46;&#1573;': 'د.إ', // Emirati Dirham
+  '&#82;&#77;': 'RM', // Malaysian Ringgit
+};
 
 class THelper {
-  static Color? getColor(String value) {
+  static removeSpaces(String value) => value.replaceAll(' ', '');
+  static Color getColor({required String color, required String opacity}) {
+    return Color(int.parse(color.replaceAll('#', opacity)));
+  }
+
+  static Color? getColors(String value) {
     /// Define your product specific colors here and it will match the attribute colors and show specific 🟠🟡🟢🔵🟣🟤
 
     if (value == 'Green') {
@@ -55,6 +89,49 @@ class THelper {
         duration: const Duration(milliseconds: 700),
       ),
     );
+  }
+
+  static String formatBytes(int bytes) {
+    if (bytes < 0) {
+      return "Invalid";
+    } else if (bytes < 1000000) {
+      // Convert to KB
+      double kb = bytes / 1000;
+      return "${kb.toInt()}KB ";
+    } else if (bytes < 1000000000) {
+      // Convert to MB
+      double mb = bytes / 1000000;
+      return "${mb.toInt()}MB ";
+    } else if (bytes < 1000000000000) {
+      // Convert to GB
+      double gb = bytes / 1000000000;
+      return "${gb.toInt()}GB ";
+    } else {
+      // If value is in TB, return "Unlimited"
+      return "Unlimited ".tr;
+    }
+  }
+
+  static String currency(String text) {
+    String result = text;
+    currencySymbols.forEach((key, value) {
+      result = result.replaceAll(key, value);
+    });
+    return result;
+  }
+
+  static void copyToClipboard(String link) {
+    Clipboard.setData(ClipboardData(text: link)).then((_) {
+      TLoaders.customToast(message: "Link copied to clipboard");
+    }).catchError((error) {
+      TLoaders.customToast(message: "Failed to copy link: $error");
+    });
+  }
+
+  static void shareLink(String link) {
+    Share.share(link).catchError((error) {
+      TLoaders.customToast(message: "Failed to share link: $error");
+    });
   }
 
   static void showAlert(String? title, String message,

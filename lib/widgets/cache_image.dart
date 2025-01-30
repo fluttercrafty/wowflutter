@@ -35,8 +35,10 @@ class CacheImage extends StatelessWidget {
     final baseColor = isDarkMode ? Colors.grey[700]! : Colors.grey[300]!;
     final highlightColor = isDarkMode ? Colors.grey[500]! : Colors.grey[100]!;
 
-    return GestureDetector(
+    return InkWell(
       onTap: onTap != null ? () => onTap!() : null,
+
+      borderRadius: BorderRadius.circular(50),
       child: Container(
         clipBehavior: Clip.hardEdge,
         margin: margin,
@@ -63,7 +65,7 @@ class CacheImage extends StatelessWidget {
                 color: Get.isDarkMode
                     ? const Color(0xFF727272)
                     : const Color(0xFFE7EAF3),
-                borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(0)),
             child: SvgPicture.asset(TSvgs.placeholder,
                 height: MediaQuery.of(context).size.width * 0.5),
           )),

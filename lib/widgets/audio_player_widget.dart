@@ -54,7 +54,7 @@ class _WidgetSondState extends State<AudioWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
       child: Column(
         children: [
           Slider(

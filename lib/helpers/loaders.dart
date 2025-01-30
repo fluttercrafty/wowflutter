@@ -20,9 +20,9 @@ class TLoaders {
           margin: const EdgeInsets.symmetric(horizontal: 30),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: THelper.isDarkMode(Get.context!) ? TColors.darkerGrey.withOpacity(0.9) : TColors.grey.withOpacity(0.9),
+           color: THelper.isDarkMode(Get.context!) ? TColors.darkerGrey.withValues(alpha: 0.9) : TColors.grey.withValues(alpha: 0.9),
           ),
-          child: Center(child: Text(message, style: Theme.of(Get.context!).textTheme.labelLarge)),
+          child: Center(child: Text(message, style: TextStyle(color: THelper.isDarkMode(Get.context!) ? Colors.white: Colors.black))),
         ),
       ),
     );

@@ -22,6 +22,30 @@ class DateTimeHelper {
     }
   }
 
+  static String formatDate(String dateString) {
+    DateTime inputDate =
+        DateTime.parse(dateString); // Convert String to DateTime
+    DateTime now = DateTime.now();
+    DateTime yesterday = now.subtract(const Duration(days: 1));
+
+    // Format for Today (Only time e.g., 10:47 AM)
+    if (inputDate.year == now.year &&
+        inputDate.month == now.month &&
+        inputDate.day == now.day) {
+      return DateFormat('hh:mm a').format(inputDate);
+    }
+
+    // Format for Yesterday
+    if (inputDate.year == yesterday.year &&
+        inputDate.month == yesterday.month &&
+        inputDate.day == yesterday.day) {
+      return 'Yesterday';
+    }
+
+    // Format for any other date (e.g., 28 Jan 2025)
+    return DateFormat('dd MMM yyyy').format(inputDate);
+  }
+
   static String convertTime(String timestamp) {
     // Parse the UNIX timestamp
     int parsedTimestamp = int.tryParse(timestamp) ?? 0;
