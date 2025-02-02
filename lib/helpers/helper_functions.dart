@@ -135,7 +135,7 @@ class THelper {
   }
 
   static void showAlert(String? title, String message,
-      {VoidCallback? onTapYes, VoidCallback? onTapNo}) {
+      {VoidCallback? onTapYes, VoidCallback? onTapNo, VoidCallback? onTapOK}) {
     showDialog(
       context: Get.context!,
       builder: (BuildContext context) {
@@ -179,7 +179,7 @@ class THelper {
             if (onTapYes == null && onTapNo == null)
               TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    onTapOK!();
                   },
                   child: const Text('OK')),
           ],
