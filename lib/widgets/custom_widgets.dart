@@ -22,6 +22,7 @@ class CustomTextField extends StatelessWidget {
     this.fonts = "Urbanist",
     this.borderRadius = 10,
     this.keyboardType = TextInputType.text,
+    this.contentPadding  = const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
   });
 
   final String? labelText, hintText;
@@ -35,6 +36,7 @@ class CustomTextField extends StatelessWidget {
   final dynamic fonts;
   final double borderRadius;
   final dynamic keyboardType;
+  final dynamic contentPadding;
 
 
   @override
@@ -64,8 +66,7 @@ class CustomTextField extends StatelessWidget {
                   : null,
           fillColor: Get.isDarkMode ? TColors.dark : Colors.white,
           filled: true,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          contentPadding: contentPadding,
           hintText: hintText,
           labelText: labelText,
           labelStyle: safeGoogleFont(
