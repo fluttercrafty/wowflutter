@@ -107,6 +107,7 @@ class CustomElevatedButton extends StatelessWidget {
   final EdgeInsets padding;
   final bool isLoading;
   final double fontSize;
+  final double iconSize;
   final IconData? icon;
 
   const CustomElevatedButton({
@@ -120,6 +121,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.iconColor = Colors.white,
     this.fontSize = 15,
+    this.iconSize = 20,
     this.borderColor = Colors.transparent,
     this.borderRadius = 8.0,
     this.borderWidth = 1,
@@ -169,7 +171,7 @@ class CustomElevatedButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (icon != null) ...[
-                      Icon(icon, color: iconColor),
+                      Icon(icon, color: iconColor, size: iconSize),
                       if (text != '') const SizedBox(width: 10),
                     ],
                     if (text != '')

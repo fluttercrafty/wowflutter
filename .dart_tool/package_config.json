@@ -692,10 +692,10 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-01-06T13:10:14.392452Z",
+  "generated": "2025-03-10T18:31:04.305915Z",
   "generator": "pub",
-  "generatorVersion": "3.6.0",
+  "generatorVersion": "3.6.2",
   "flutterRoot": "file:///C:/flutter",
-  "flutterVersion": "3.27.1",
+  "flutterVersion": "3.27.4",
   "pubCache": "file:///C:/Users/Chaudhry/AppData/Local/Pub/Cache"
 }

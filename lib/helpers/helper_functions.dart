@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,6 +41,28 @@ class THelper {
   static removeSpaces(String value) => value.replaceAll(' ', '');
   static Color getColor({required String color, required String opacity}) {
     return Color(int.parse(color.replaceAll('#', opacity)));
+  }
+
+  static changeFileExtension(String filePath, String newExtension) async {
+    // Create a File instance for the existing file.
+    final file = File(filePath);
+
+    // Ensure the new extension starts with a dot.
+    final formattedExtension =
+        newExtension.startsWith('.') ? newExtension : '.$newExtension';
+
+    // Generate a new file path by replacing the existing extension.
+    // This regex finds the last dot and whatever follows and replaces it.
+    final newFilePath =
+        filePath.replaceAll(RegExp(r'\.[^\.]+$'), formattedExtension);
+
+    try {
+      // Rename the file.
+      final newFile = await file.rename(newFilePath);
+      print('File renamed to: ${newFile.path}');
+    } catch (e) {
+      print('Error renaming file: $e');
+    }
   }
 
   static Color? getColors(String value) {
