@@ -429,9 +429,9 @@
     },
     {
       "name": "shimmer",
-      "rootUri": "file:///C:/Users/Chaudhry/AppData/Local/Pub/Cache/hosted/pub.dev/shimmer-3.0.0",
+      "rootUri": "file:///C:/Users/Chaudhry/AppData/Local/Pub/Cache/hosted/pub.dev/shimmer-2.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
@@ -692,7 +692,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-03-10T18:31:04.305915Z",
+  "generated": "2025-03-18T01:40:01.276359Z",
   "generator": "pub",
   "generatorVersion": "3.6.2",
   "flutterRoot": "file:///C:/flutter",
