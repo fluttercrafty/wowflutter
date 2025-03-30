@@ -22,7 +22,7 @@ class CustomTextField extends StatelessWidget {
     this.fonts = "Urbanist",
     this.borderRadius = 10,
     this.keyboardType = TextInputType.text,
-    this.contentPadding  = const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    this.contentPadding  = const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
   });
 
   final String? labelText, hintText;
